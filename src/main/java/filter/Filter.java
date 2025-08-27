@@ -49,26 +49,29 @@ public class Filter {
     }
 
 
-    public String getFullStatistic() {
+    public String toString() {
+        if (statisticType.isEmpty()) {
+            return "";
+        }
         StringBuilder string = new StringBuilder();
-        if (!(integerList.isEmpty())) {
-            string.append("Количество целых чисел: ").append(integerList.size()).append("\n");
+        string.append("Количество целых чисел: ").append(integerList.size()).append("\n");
+        if (statisticType.equals("-f") && !(integerList.isEmpty())) {
             string.append("Минимальное число: ").append(IntegerStatistic.getMin(integerList)).append("\n");
             string.append("Максимальное число: ").append(IntegerStatistic.getMax(integerList)).append("\n");
             string.append("Сумма: ").append(IntegerStatistic.getSum(integerList)).append("\n");
             string.append("Среднее ").append(IntegerStatistic.getAverage(integerList)).append("\n\n");
         }
 
-        if (!(floatList.isEmpty())) {
-            string.append("Количество дробных чисел: ").append(floatList.size()).append("\n");
+        string.append("Количество дробных чисел: ").append(floatList.size()).append("\n");
+        if (statisticType.equals("-f") && !(floatList.isEmpty())) {
             string.append("Минимальное число: ").append(FloatStatistic.getMin(floatList)).append("\n");
             string.append("Максимальное число: ").append(FloatStatistic.getMax(floatList)).append("\n");
             string.append("Сумма: ").append(FloatStatistic.getSum(floatList)).append("\n");
             string.append("Среднее ").append(FloatStatistic.getAverage(floatList)).append("\n\n");
         }
 
-        if (!(stringList.isEmpty())) {
-            string.append("Количество строк: ").append(stringList.size()).append("\n");
+        string.append("Количество строк: ").append(stringList.size()).append("\n");
+        if (statisticType.equals("-f") && !(stringList.isEmpty())) {
             string.append("Самая короткая строка - символов: ").append(StringStatistic.getShortString(stringList)).append("\n");
             string.append("Самая длинная строка - символов: ").append(StringStatistic.getLongString(stringList)).append("\n\n");
         }
