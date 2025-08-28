@@ -28,38 +28,38 @@ public final class ReadWriteFile {
     }
 
     public static void writeFile(Filter filterFiles, FilterParameters param) {
-        String curPath = System.getProperty("user.dir");
-        if (!new File(curPath + param.getWritePath()).exists()) {
-            new File((curPath + param.getWritePath())).mkdirs();
+        String curPath = System.getProperty("user.dir") + param.getWritePath();
+        if (!new File(curPath).exists()) {
+            new File((curPath)).mkdirs();
         }
         if (param.getWriteType().equals("-a")) {
             appendSymbol = true;
         }
         if (!filterFiles.getIntegerList().isEmpty()) {
-            try (FileWriter writer = new FileWriter(curPath + param.getWritePath() + param.getNamePrefix() + INTEGERS_OUTPUT_FILE_NAME, appendSymbol)) {
+            try (FileWriter writer = new FileWriter(curPath + param.getNamePrefix() + INTEGERS_OUTPUT_FILE_NAME, appendSymbol)) {
                 for (Long elem : filterFiles.getIntegerList()) {
                     writer.write(elem + "\n");
                 }
             } catch (IOException e) {
-                System.out.println("File not created: " + curPath + param.getWritePath() + param.getNamePrefix() + INTEGERS_OUTPUT_FILE_NAME);
+                System.out.println("File not created: " + curPath + param.getNamePrefix() + INTEGERS_OUTPUT_FILE_NAME);
             }
         }
         if (!filterFiles.getFloatList().isEmpty()) {
-            try (FileWriter writer = new FileWriter(curPath + param.getWritePath() + param.getNamePrefix() + FLOATS_OUTPUT_FILE_NAME, appendSymbol)) {
+            try (FileWriter writer = new FileWriter(curPath + param.getNamePrefix() + FLOATS_OUTPUT_FILE_NAME, appendSymbol)) {
                 for (Double elem : filterFiles.getFloatList()) {
                     writer.write(elem + "\n");
                 }
             } catch (IOException e) {
-                System.out.println("File not created: " + curPath + param.getWritePath() + param.getNamePrefix() + FLOATS_OUTPUT_FILE_NAME);
+                System.out.println("File not created: " + curPath + param.getNamePrefix() + FLOATS_OUTPUT_FILE_NAME);
             }
         }
         if (!filterFiles.getStringList().isEmpty()) {
-            try (FileWriter writer = new FileWriter(curPath + param.getWritePath() + param.getNamePrefix() + STRINGS_OUTPUT_FILE_NAME, appendSymbol)) {
+            try (FileWriter writer = new FileWriter(curPath + param.getNamePrefix() + STRINGS_OUTPUT_FILE_NAME, appendSymbol)) {
                 for (String elem : filterFiles.getStringList()) {
                     writer.write(elem + "\n");
                 }
             } catch (IOException e) {
-                System.out.println("File not created: " + curPath + param.getWritePath() + param.getNamePrefix() + STRINGS_OUTPUT_FILE_NAME);
+                System.out.println("File not created: " + curPath + param.getNamePrefix() + STRINGS_OUTPUT_FILE_NAME);
             }
         }
     }

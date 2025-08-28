@@ -10,7 +10,7 @@ public class FilterParameters {
     private List<String> files;
 
     public FilterParameters(String[] args) {
-        this.writePath = "";
+        this.writePath = "/";
         this.namePrefix = "";
         this.writeType = "";
         this.statisticType = "";
@@ -41,6 +41,9 @@ public class FilterParameters {
             if (args[i].endsWith(".txt")) {
                 this.files.add(args[i]);
             }
+        }
+        if (System.getProperty("os.name").startsWith("Windows")) {
+            this.writePath = this.writePath.replace("\\", "/");
         }
     }
 
