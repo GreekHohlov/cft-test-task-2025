@@ -22,6 +22,12 @@ public class FilterParameters {
         for (int i = 0; i < args.length; i++) {
             if (args[i].equalsIgnoreCase("-o") && !args[i + 1].startsWith("-")) {
                 this.writePath = args[i + 1];
+                if (!this.writePath.endsWith("/")) {
+                    this.writePath += "/";
+                }
+                if (!this.writePath.startsWith("/")) {
+                    this.writePath = "/" + this.writePath;
+                }
             }
             if (args[i].equalsIgnoreCase("-p") && !args[i + 1].startsWith("-")) {
                 this.namePrefix = args[i + 1];
